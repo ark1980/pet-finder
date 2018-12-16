@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import PageHeader from "./PageHeader";
 import Results from "./Results";
 import { petfinder } from "./Api";
+import { Router } from "@reach/router";
+import Contact from "./Contact";
 
 class App extends Component {
   state = {
@@ -35,10 +37,11 @@ class App extends Component {
 
   render() {
     return (
-      <div>
-        <PageHeader />
-        <Results pets={this.state.pets} />
-      </div>
+      <Router>
+        <PageHeader path="/" />
+        <Results path="/results" pets={this.state.pets} />
+        <Contact path="/contact" />
+      </Router>
     );
   }
 }

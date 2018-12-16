@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Button, Form } from "semantic-ui-react";
 import { petfinder } from "./Api";
-import { ANIMALS } from "petfinder-client";
 
 class SearchForm extends Component {
   state = {
@@ -57,11 +56,6 @@ class SearchForm extends Component {
 
   render() {
     const { animal, breeds } = this.state;
-    const options = breeds.map(breed => (
-      <option key={breed} value={breed}>
-        {breed}
-      </option>
-    ));
 
     console.log("BREEDS ====>", breeds);
 
