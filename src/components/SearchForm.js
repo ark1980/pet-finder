@@ -1,133 +1,90 @@
 import React, { Component } from "react";
 import { Button, Form } from "semantic-ui-react";
-import { petfinder } from "./Api";
+import { Consumer } from "./SearchContext";
 
 class SearchForm extends Component {
-  state = {
-    location: "",
-    animal: "",
-    breed: "",
-    breeds: []
-  };
-
   handleSubmit = e => {
     e.preventDefault();
-  };
 
-  handleLocationChange = e => {
-    this.setState({
-      location: e.target.value
-    });
-  };
-
-  handleAnimalChange = e => {
-    this.setState(
-      {
-        animal: e.target.value,
-        breed: ""
-      },
-      this.getBreeds
-    );
-  };
-
-  handleBreedChange = e => {
-    this.setState({
-      breed: e.target.value
-    });
-  };
-
-  getBreeds = () => {
-    if (this.state.animal) {
-      petfinder.breed.list({ animal: this.state.animal }).then(data => {
-        if (
-          data.petfinder &&
-          data.petfinder.breeds &&
-          Array.isArray(data.petfinder.breeds.breed)
-        ) {
-          this.setState({ breeds: data.petfinder.breeds.breed });
-        } else {
-          this.setState({ breeds: [] });
-        }
-      });
-    } else {
-      this.setState({ breeds: [] });
-    }
+    this.props.search();
   };
 
   render() {
-    const { animal, breeds } = this.state;
-
-    console.log("BREEDS ====>", breeds);
-
     return (
-      <Form style={{ marginTop: "50px" }} onSubmit={this.handleSubmit}>
-        <Form.Field>
-          <label>Location</label>
-          <input
-            placeholder="City, State"
-            type="text"
-            value={this.state.location}
-            onChange={this.handleLocationChange}
-          />
-        </Form.Field>
+      <Consumer>
+        {context => {
+          return (
+            <Form style={{ marginTop: "50px" }} onSubmit={this.handleSubmit}>
+              <Form.Field>
+                <label>Location</label>
+                <input
+                  placeholder="City, State"
+                  type="text"
+                  value={context.location}
+                  onChange={context.handleLocationChange}
+                />
+              </Form.Field>
 
-        {/* Radio Buttons */}
-        <Form.Group inline>
-          <label>Animal</label>
-          <Form.Field
-            type="radio"
-            control="input"
-            value="dog"
-            checked={animal === "dog"}
-            label="Dog"
-            onChange={this.handleAnimalChange}
-          />
-          <Form.Field
-            type="radio"
-            control="input"
-            value="cat"
-            checked={animal === "cat"}
-            label="Cat"
-            onChange={this.handleAnimalChange}
-          />
-          <Form.Field
-            type="radio"
-            control="input"
-            value="bird"
-            checked={animal === "bird"}
-            label="Bird"
-            onChange={this.handleAnimalChange}
-          />
-          <Form.Field
-            type="radio"
-            control="input"
-            value="horse"
-            checked={animal === "horse"}
-            label="Horse"
-            onChange={this.handleAnimalChange}
-          />
-        </Form.Group>
+              {/* Radio Buttons */}
+              <Form.Group inline>
+                <label>Animal</label>
+                <Form.Field
+                  type="radio"
+                  control="input"
+                  value="dog"
+                  checked={context.animal === "dog"}
+                  label="Dog"
+                  onChange={context.handleAnimalChange}
+                />
+                <Form.Field
+                  type="radio"
+                  control="input"
+                  value="cat"
+                  checked={context.animal === "cat"}
+                  label="Cat"
+                  onChange={context.handleAnimalChange}
+                />
+                <Form.Field
+                  type="radio"
+                  control="input"
+                  value="bird"
+                  checked={context.animal === "bird"}
+                  label="Bird"
+                  onChange={context.handleAnimalChange}
+                />
+                <Form.Field
+                  type="radio"
+                  control="input"
+                  value="horse"
+                  checked={context.animal === "horse"}
+                  label="Horse"
+                  onChange={context.handleAnimalChange}
+                />
+              </Form.Group>
 
-        <Form.Group widths="equal">
-          <Form.Field
-            control="select"
-            placeholder="Breeds"
-            label="Breeds"
-            value={this.state.breed}
-            onChange={this.handleBreedChange}
-            onBlur={this.handleBreedChange}
-            disabled={!this.state.breeds.length}
-          >
-            {breeds.map(breed => (
-              <option key={breed} value={breed}>
-                {breed}
-              </option>
-            ))}
-          </Form.Field>
-        </Form.Group>
+              <Form.Group widths="equal">
+                <Form.Field
+                  control="select"
+                  placeholder="Breeds"
+                  label="Breeds"
+                  value={context.breed}
+                  onChange={context.handleBreedChange}
+                  onBlur={context.handleBreedChange}
+                  disabled={!context.breeds.length}
+                >
+                  {context.breeds.map(breed => (
+                    <option key={breed} value={breed}>
+                      {breed}
+                    </option>
+                  ))}
+                </Form.Field>
+              </Form.Group>
 
-        <Button type="submit">Submit</Button>
-      </Form>
+              <Button type="submit">Submit</Button>
+            </Form>
+          );
+        }}
+      </Consumer>
     );
   }
 }

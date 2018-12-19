@@ -4,7 +4,11 @@ const SearchContext = React.createContext({
   location: "",
   animal: "",
   breed: "",
-  name: ""
+  name: "",
+  handleLocationChange() {},
+  handleAnimalChange() {},
+  handleBreedChange() {},
+  getBreeds() {}
 });
 
 export const Provider = SearchContext.Provider;
