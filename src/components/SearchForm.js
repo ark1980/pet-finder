@@ -1,12 +1,15 @@
 import React, { Component } from "react";
 import { Button, Form } from "semantic-ui-react";
 import { Consumer } from "./SearchContext";
+import { navigate } from "@reach/router";
 
 class SearchForm extends Component {
   handleSubmit = e => {
     e.preventDefault();
 
     this.props.search();
+    navigate("/results");
+    this.props.clearSearchForm();
   };
 
   render() {

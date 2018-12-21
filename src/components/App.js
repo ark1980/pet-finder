@@ -11,6 +11,7 @@ class App extends Component {
     super();
 
     this.state = {
+      pets: [],
       location: "",
       animal: "",
       breed: "",
@@ -18,9 +19,39 @@ class App extends Component {
       handleLocationChange: this.handleLocationChange,
       handleAnimalChange: this.handleAnimalChange,
       handleBreedChange: this.handleBreedChange,
-      getBreeds: this.getBreeds
+      getBreeds: this.getBreeds,
+      search: this.search
     };
   }
+
+  // Search ==============================================================
+
+  search = () => {
+    petfinder.pet
+      .find({
+        output: "full",
+        location: this.state.location,
+        animal: this.state.animal,
+        breed: this.state.breed
+      })
+      .then(data => {
+        let pets;
+
+        if (data.petfinder.pets && data.petfinder.pets.pet) {
+          if (Array.isArray(data.petfinder.pets.pet)) {
+            pets = data.petfinder.pets.pet;
+          } else {
+            pets = [data.petfinder.pets.pet];
+          }
+        } else {
+          pets = [];
+        }
+
+        this.setState({
+          pets
+        });
+      });
+  };
 
   handleLocationChange = e => {
     this.setState({
@@ -62,12 +93,24 @@ class App extends Component {
     }
   };
 
+  clearSearchForm = () => {
+    this.setState({
+      location: "",
+      animal: "",
+      breeds: []
+    });
+  };
+
   render() {
     return (
       <Provider value={this.state}>
         <Router>
-          <PageHeader path="/" />
-          <Results path="/results" />
+          <PageHeader
+            path="/"
+            search={this.search}
+            clearSearchForm={this.clearSearchForm}
+          />
+          <Results path="/results" pets={this.state.pets} />
           <Contact path="/contact" />
         </Router>
       </Provider>

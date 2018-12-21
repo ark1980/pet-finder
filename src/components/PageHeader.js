@@ -25,7 +25,10 @@ class PageHeader extends Component {
                 </Header.Subheader>
               </Header.Content>
             </Header>
-            <SearchForm search={this.props.search} />
+            <SearchForm
+              search={this.props.search}
+              clearSearchForm={this.props.clearSearchForm}
+            />
           </Segment>
         </Segment.Group>
       </div>
