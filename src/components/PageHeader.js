@@ -10,7 +10,7 @@ class PageHeader extends Component {
         <Segment.Group compact style={{ marginLeft: "90px" }}>
           <Segment style={{ padding: "50px" }}>
             <Header as="h1">
-              <Icon name="paw" style={{ color: "#0D2C54" }} />
+              <Icon name="paw" style={{ color: "#082341" }} />
               <Header.Content
                 style={{
                   fontFamily: "'Gochi Hand', cursive",
@@ -19,7 +19,7 @@ class PageHeader extends Component {
                 }}
               >
                 ADOPT ME
-                <Header.Subheader style={{ color: "#0D2C54" }}>
+                <Header.Subheader style={{ color: "#082341" }}>
                   Thousands of adoptable pets are looking for people. People
                   Like You
                 </Header.Subheader>
