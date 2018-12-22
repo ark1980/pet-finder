@@ -7,9 +7,9 @@ class SearchForm extends Component {
   handleSubmit = e => {
     e.preventDefault();
 
-    this.props.search();
+    this.props.searchParams.search();
     navigate("/results");
-    this.props.clearSearchForm();
+    this.props.clearSearchParams.clearSearchForm();
   };
 
   render() {
@@ -92,4 +92,16 @@ class SearchForm extends Component {
   }
 }
 
-export default SearchForm;
+export default function searchWithContext(props) {
+  return (
+    <Consumer>
+      {context => (
+        <SearchForm
+          {...props}
+          searchParams={context}
+          clearSearchParams={context}
+        />
+      )}
+    </Consumer>
+  );
+}

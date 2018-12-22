@@ -7,8 +7,8 @@ import Contact from "./Contact";
 import { Provider } from "./SearchContext";
 
 class App extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       pets: [],
@@ -20,7 +20,8 @@ class App extends Component {
       handleAnimalChange: this.handleAnimalChange,
       handleBreedChange: this.handleBreedChange,
       getBreeds: this.getBreeds,
-      search: this.search
+      search: this.search,
+      clearSearchForm: this.clearSearchForm
     };
   }
 
@@ -105,11 +106,7 @@ class App extends Component {
     return (
       <Provider value={this.state}>
         <Router>
-          <PageHeader
-            path="/"
-            search={this.search}
-            clearSearchForm={this.clearSearchForm}
-          />
+          <PageHeader path="/" />
           <Results path="/results" pets={this.state.pets} />
           <Contact path="/contact" />
         </Router>
