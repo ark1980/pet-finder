@@ -42,9 +42,9 @@ const Footer = () => {
             </Header>
             <Header as="h4" style={{ color: "#FFF" }}>
               Follow on{" "}
-              <Link to="https://github.com/ark1980/pet-finder">
+              <a href="https://github.com/ark1980/pet-finder">
                 Github <Icon name="github" size="large" />
-              </Link>
+              </a>
             </Header>
           </Grid.Column>
         </Grid>
