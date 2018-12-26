@@ -23,7 +23,7 @@ const Footer = () => {
       <Container textAlign="center">
         <Grid divided inverted stackable>
           <Grid.Column width={8} textAlign="left">
-            <Header as="h2" content="Adopt Me" style={{ color: "#FFB400" }} />
+            <Header as="h2" content="Adopt Me" style={{ color: "#082341" }} />
             <List>
               <List.Item>
                 <Link to="/">Home</Link>
@@ -41,7 +41,7 @@ const Footer = () => {
               &lt; &#47;&gt; with &#10084; By AliKeshanian
             </Header>
             <Header as="h4" style={{ color: "#FFF" }}>
-              Follow on{" "}
+              Follow Me on{" "}
               <a href="https://github.com/ark1980/pet-finder">
                 Github <Icon name="github" size="large" />
               </a>

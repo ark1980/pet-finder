@@ -22,10 +22,10 @@ class NavHeader extends Component {
           </Menu.Item>
           <Menu.Menu position="right">
             <Menu.Item as="a">
-              <Link to="/">SEARCH AGAIN</Link>
+              <Link to="/">ABOUT</Link>
             </Menu.Item>
             <Menu.Item as="a">
-              <Link to="/">ABOUT</Link>
+              <Link to="/shelters">SHELTERS</Link>
             </Menu.Item>
             <Menu.Item as="a">
               <Link to="/contact">CONTACT</Link>

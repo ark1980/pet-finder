@@ -18,7 +18,6 @@ class Results extends Component {
   };
   render() {
     const { activeIndex } = this.state;
-    // console.log("PETS ===>", this.state.pets);
     return (
       <div>
         <NavHeader />

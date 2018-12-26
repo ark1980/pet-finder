@@ -5,6 +5,7 @@ import { petfinder } from "./Api";
 import { Router } from "@reach/router";
 import Contact from "./Contact";
 import { Provider } from "./SearchContext";
+import Shelters from "./Shelters";
 
 class App extends Component {
   constructor(props) {
@@ -109,6 +110,7 @@ class App extends Component {
           <PageHeader path="/" />
           <Results path="/results" pets={this.state.pets} />
           <Contact path="/contact" />
+          <Shelters path="/shelters" />
         </Router>
       </Provider>
     );
