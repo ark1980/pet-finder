@@ -6,6 +6,7 @@ import { Router } from "@reach/router";
 import Contact from "./Contact";
 import { Provider } from "./SearchContext";
 import Shelters from "./Shelters";
+import Details from "./Details";
 
 class App extends Component {
   constructor(props) {
@@ -111,6 +112,7 @@ class App extends Component {
           <Results path="/results" pets={this.state.pets} />
           <Contact path="/contact" />
           <Shelters path="/shelters" />
+          <Details path="/details" />
         </Router>
       </Provider>
     );
